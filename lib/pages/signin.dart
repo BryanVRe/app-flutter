@@ -2,17 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:myappflutter/components/my_button.dart';
 import 'package:myappflutter/components/my_textfield.dart';
 import 'package:myappflutter/components/square_tile.dart';
+import 'package:myappflutter/services/auth_service.dart';
 
 class Signin extends StatelessWidget {
   Signin({super.key});
 
   // text editing controllers
   final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final AuthService authService = AuthService();
 
   // sign user in method
-  void enterUser(BuildContext context) {
-    Navigator.pushNamed(context, '/home');
+  void enterUser(BuildContext context) async {
+    final username = usernameController.text;
+    final password = passwordController.text;
+    final email = emailController.text;
+
+    bool result = await authService.register(
+        email, username, password); // Llama a la función de login
+
+    if (result) {
+      Navigator.pushNamed(context, '/');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:
+              Text('Inicio de sesión fallido. Por favor, inténtalo de nuevo.'),
+        ),
+      );
+    }
   }
 
   void logIn(BuildContext context) {
@@ -62,6 +81,14 @@ class Signin extends StatelessWidget {
 
               const SizedBox(height: 10),
 
+              // email textfield
+              MyTextField(
+                controller: emailController,
+                hintText: 'Email',
+                obscureText: false,
+              ),
+
+              const SizedBox(height: 10),
               // password textfield
               MyTextField(
                 controller: passwordController,

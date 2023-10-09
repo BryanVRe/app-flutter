@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:myappflutter/components/my_button.dart';
 import 'package:myappflutter/components/my_textfield.dart';
 import 'package:myappflutter/components/square_tile.dart';
+import 'package:myappflutter/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
@@ -9,10 +11,27 @@ class Login extends StatelessWidget {
   // text editing controllers
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+  final AuthService authService = AuthService();
+  //var authService = Provider.of<AuthService>(context);
 
   // sign user in method
-  void goHome(BuildContext context) {
-    Navigator.pushNamed(context, '/home');
+  void goHome(BuildContext context) async {
+    final username = usernameController.text;
+    final password = passwordController.text;
+
+    bool result = await authService.login(
+        username, password); // Llama a la función de login
+
+    if (result) {
+      Navigator.pushNamed(context, '/home');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:
+              Text('Inicio de sesión fallido. Por favor, inténtalo de nuevo.'),
+        ),
+      );
+    }
   }
 
   void signIn(BuildContext context) {
