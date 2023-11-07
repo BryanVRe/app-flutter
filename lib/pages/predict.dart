@@ -224,287 +224,286 @@ class _PredictState extends State<Predict> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Formulario de Predicción'),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: <Widget>[
-              //.
-              //____________________________________ DATE ____________________________________
-              TextFormField(
-                controller: dateController,
-                decoration: const InputDecoration(labelText: 'Date (ddMMyyyy)'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa la fecha.';
-                  }
-                  return null;
-                },
-                onTap: () {
-                  _selectDate(context);
-                },
-              ),
-              //.
-              //____________________________________ HOUR ____________________________________
-              TextFormField(
-                controller: hourController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Hour'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa un valor.';
-                  }
-                  return null;
-                },
-              ),
-              //.
-              //____________________________________ TEMPERATURE ____________________________________
-              TextFormField(
-                controller: temperatureController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Temperature'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa un valor.';
-                  }
-                  return null;
-                },
-              ),
-              //.
-              //____________________________________ HUMIDITY ____________________________________
-              TextFormField(
-                controller: humidityController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Humidity'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa un valor.';
-                  }
-                  return null;
-                },
-              ),
-              //.
-              //____________________________________ WINDSPEED ____________________________________
-              TextFormField(
-                controller: windSpeedController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'windSpeed'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa un valor.';
-                  }
-                  return null;
-                },
-              ),
-              //.
-              //____________________________________ VISIBILITY ____________________________________
-              TextFormField(
-                controller: visibilityController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'visibility'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa un valor.';
-                  }
-                  return null;
-                },
-              ),
-              //.
-              //____________________________________ DEWPOINT ____________________________________
-              TextFormField(
-                controller: dewPointController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'dewPoint'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa un valor.';
-                  }
-                  return null;
-                },
-              ),
-              //.
-              //____________________________________ SOLARRADIATION ____________________________________
-              TextFormField(
-                controller: solarRadiationController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'solarRadiation'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa un valor.';
-                  }
-                  return null;
-                },
-              ),
-              //.
-              //____________________________________ RAIN ____________________________________
-              TextFormField(
-                controller: rainfallController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'rainfall'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa un valor.';
-                  }
-                  return null;
-                },
-              ),
-              //.
-              //____________________________________ SNOWFALL ____________________________________
-              TextFormField(
-                controller: snowfallController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'snowfall'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa un valor.';
-                  }
-                  return null;
-                },
-              ),
-              //.
-              //____________________________________ season ____________________________________
-              DropdownButtonFormField<int>(
-                value: season,
-                onChanged: (int? value) {
-                  setState(() {
-                    season = value!;
-                    seasonController.text = value.toString();
-                  });
-                },
-                decoration: const InputDecoration(labelText: 'season'),
-                items: const [
-                  DropdownMenuItem(
-                    value: 1,
-                    child: Text('Winter'),
-                  ),
-                  DropdownMenuItem(
-                    value: 2,
-                    child: Text('Spring'),
-                  ),
-                  DropdownMenuItem(
-                    value: 3,
-                    child: Text('Summer'),
-                  ),
-                  DropdownMenuItem(
-                    value: 4,
-                    child: Text('Autumn'),
-                  ),
-                ],
-              ),
-              //.
-              //____________________________________ ISHOLIDAY ____________________________________
-              DropdownButtonFormField<int>(
-                value: isHoliday,
-                onChanged: (int? value) {
-                  setState(() {
-                    isHoliday = value!;
-                    isHolidayController.text = value.toString();
-                  });
-                },
-                decoration: const InputDecoration(labelText: 'IsHoliday'),
-                items: const [
-                  DropdownMenuItem(
-                    value: 1,
-                    child: Text('Si'),
-                  ),
-                  DropdownMenuItem(
-                    value: 0,
-                    child: Text('No'),
-                  ),
-                ],
-              ),
-              //.
-              //____________________________________ ISFUNCTIONINGDAY ____________________________________
-              DropdownButtonFormField<int>(
-                value: isFunctioningDay,
-                onChanged: (int? value) {
-                  setState(() {
-                    isFunctioningDay = value!;
-                    isFunctioningDayController.text = value.toString();
-                  });
-                },
-                decoration:
-                    const InputDecoration(labelText: 'IsFunctioningDay'),
-                items: const [
-                  DropdownMenuItem(
-                    value: 1,
-                    child: Text('Si'),
-                  ),
-                  DropdownMenuItem(
-                    value: 0,
-                    child: Text('No'),
-                  ),
-                ],
-              ),
-              //.
-              //____________________________________ BOTON ____________________________________
-              ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
-                    // Llamada a la función que consume la API
-                    print("boton");
-                    int result = await apiService.getRentedValue(
-                        date: selectedDate,
-                        hour: hour,
-                        temperature: temperature,
-                        humidity: humidity,
-                        windSpeed: windSpeed,
-                        visibility: visibility,
-                        dewPoint: dewPoint,
-                        solarRadiation: solarRadiation,
-                        rainfall: rainfall,
-                        snowfall: snowfall,
-                        season: season,
-                        isHoliday: isHoliday,
-                        isFunctioningDay: isFunctioningDay);
-                    // ignore: use_build_context_synchronously
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Datos enviados'),
-                          content: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Text('Date: $selectedDate'),
-                              Text('Hour: $hour'),
-                              Text('temperature: $temperature'),
-                              Text('humidity: $humidity'),
-                              Text('windSpeed: $windSpeed'),
-                              Text('visibility: $visibility'),
-                              Text('dewPoint: $dewPoint'),
-                              Text('solarRadiation: $solarRadiation'),
-                              Text('rainfall: $rainfall'),
-                              Text('snowfall: $snowfall'),
-                              Text('season: $season'),
-                              Text('isHoliday: $isHoliday'),
-                              Text('isFunctioningDay: $isFunctioningDay'),
-                              Text('Predicción: $result'),
-                            ],
-                          ),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text('Cerrar'),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                //.
+                //____________________________________ DATE ____________________________________
+                TextFormField(
+                  controller: dateController,
+                  decoration: const InputDecoration(labelText: 'Date (ddMMyyyy)'),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, ingresa la fecha.';
+                    }
+                    return null;
+                  },
+                  onTap: () {
+                    _selectDate(context);
+                  },
+                ),
+                //.
+                //____________________________________ HOUR ____________________________________
+                TextFormField(
+                  controller: hourController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'Hour'),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, ingresa un valor.';
+                    }
+                    return null;
+                  },
+                ),
+                //.
+                //____________________________________ TEMPERATURE ____________________________________
+                TextFormField(
+                  controller: temperatureController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'Temperature'),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, ingresa un valor.';
+                    }
+                    return null;
+                  },
+                ),
+                //.
+                //____________________________________ HUMIDITY ____________________________________
+                TextFormField(
+                  controller: humidityController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'Humidity'),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, ingresa un valor.';
+                    }
+                    return null;
+                  },
+                ),
+                //.
+                //____________________________________ WINDSPEED ____________________________________
+                TextFormField(
+                  controller: windSpeedController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'windSpeed'),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, ingresa un valor.';
+                    }
+                    return null;
+                  },
+                ),
+                //.
+                //____________________________________ VISIBILITY ____________________________________
+                TextFormField(
+                  controller: visibilityController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'visibility'),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, ingresa un valor.';
+                    }
+                    return null;
+                  },
+                ),
+                //.
+                //____________________________________ DEWPOINT ____________________________________
+                TextFormField(
+                  controller: dewPointController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'dewPoint'),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, ingresa un valor.';
+                    }
+                    return null;
+                  },
+                ),
+                //.
+                //____________________________________ SOLARRADIATION ____________________________________
+                TextFormField(
+                  controller: solarRadiationController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'solarRadiation'),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, ingresa un valor.';
+                    }
+                    return null;
+                  },
+                ),
+                //.
+                //____________________________________ RAIN ____________________________________
+                TextFormField(
+                  controller: rainfallController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'rainfall'),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, ingresa un valor.';
+                    }
+                    return null;
+                  },
+                ),
+                //.
+                //____________________________________ SNOWFALL ____________________________________
+                TextFormField(
+                  controller: snowfallController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: 'snowfall'),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, ingresa un valor.';
+                    }
+                    return null;
+                  },
+                ),
+                //.
+                //____________________________________ season ____________________________________
+                DropdownButtonFormField<int>(
+                  value: season,
+                  onChanged: (int? value) {
+                    setState(() {
+                      season = value!;
+                      seasonController.text = value.toString();
+                    });
+                  },
+                  decoration: const InputDecoration(labelText: 'season'),
+                  items: const [
+                    DropdownMenuItem(
+                      value: 1,
+                      child: Text('Winter'),
+                    ),
+                    DropdownMenuItem(
+                      value: 2,
+                      child: Text('Spring'),
+                    ),
+                    DropdownMenuItem(
+                      value: 3,
+                      child: Text('Summer'),
+                    ),
+                    DropdownMenuItem(
+                      value: 4,
+                      child: Text('Autumn'),
+                    ),
+                  ],
+                ),
+                //.
+                //____________________________________ ISHOLIDAY ____________________________________
+                DropdownButtonFormField<int>(
+                  value: isHoliday,
+                  onChanged: (int? value) {
+                    setState(() {
+                      isHoliday = value!;
+                      isHolidayController.text = value.toString();
+                    });
+                  },
+                  decoration: const InputDecoration(labelText: 'IsHoliday'),
+                  items: const [
+                    DropdownMenuItem(
+                      value: 1,
+                      child: Text('Si'),
+                    ),
+                    DropdownMenuItem(
+                      value: 0,
+                      child: Text('No'),
+                    ),
+                  ],
+                ),
+                //.
+                //____________________________________ ISFUNCTIONINGDAY ____________________________________
+                DropdownButtonFormField<int>(
+                  value: isFunctioningDay,
+                  onChanged: (int? value) {
+                    setState(() {
+                      isFunctioningDay = value!;
+                      isFunctioningDayController.text = value.toString();
+                    });
+                  },
+                  decoration:
+                      const InputDecoration(labelText: 'IsFunctioningDay'),
+                  items: const [
+                    DropdownMenuItem(
+                      value: 1,
+                      child: Text('Si'),
+                    ),
+                    DropdownMenuItem(
+                      value: 0,
+                      child: Text('No'),
+                    ),
+                  ],
+                ),
+                //.
+                //____________________________________ BOTON ____________________________________
+                ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      // Llamada a la función que consume la API
+                      print("boton");
+                      int result = await apiService.getRentedValue(
+                          date: selectedDate,
+                          hour: hour,
+                          temperature: temperature,
+                          humidity: humidity,
+                          windSpeed: windSpeed,
+                          visibility: visibility,
+                          dewPoint: dewPoint,
+                          solarRadiation: solarRadiation,
+                          rainfall: rainfall,
+                          snowfall: snowfall,
+                          season: season,
+                          isHoliday: isHoliday,
+                          isFunctioningDay: isFunctioningDay);
+                      // ignore: use_build_context_synchronously
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text('Datos enviados'),
+                            content: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Text('Date: $selectedDate'),
+                                Text('Hour: $hour'),
+                                Text('temperature: $temperature'),
+                                Text('humidity: $humidity'),
+                                Text('windSpeed: $windSpeed'),
+                                Text('visibility: $visibility'),
+                                Text('dewPoint: $dewPoint'),
+                                Text('solarRadiation: $solarRadiation'),
+                                Text('rainfall: $rainfall'),
+                                Text('snowfall: $snowfall'),
+                                Text('season: $season'),
+                                Text('isHoliday: $isHoliday'),
+                                Text('isFunctioningDay: $isFunctioningDay'),
+                                Text('Predicción: $result'),
+                              ],
                             ),
-                          ],
-                        );
-                      },
-                    );
-                    //--------------
-                  }
-                },
-                child: const Text('Enviar'),
-              ),
-            ],
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('Cerrar'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      //--------------
+                    }
+                  },
+                  child: const Text('Enviar'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
