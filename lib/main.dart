@@ -3,17 +3,20 @@ import 'package:provider/provider.dart'; // Importa el paquete provider
 import 'package:myappflutter/pages/home.dart';
 import 'package:myappflutter/pages/login.dart';
 import 'package:myappflutter/pages/signin.dart';
+import 'package:myappflutter/pages/predict.dart';
 import 'package:myappflutter/services/auth_service.dart';
+import 'package:myappflutter/services/apiservice.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-            create: (_) => AuthService()), // Define el Provider de AuthService
+        ChangeNotifierProvider(create: (_) => AuthService()),
+        ChangeNotifierProvider(create: (_) => ApiService()),
       ],
       child: MyApp(),
     ),
+
   );
 }
 
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => Login(),
-        '/home': (context) => Home(),
+        '/home': (context) => Predict(),
         '/signIn': (context) => Signin(),
       },
     );
