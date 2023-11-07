@@ -11,27 +11,10 @@ class Login extends StatelessWidget {
   // text editing controllers
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-  final AuthService authService = AuthService();
-  //var authService = Provider.of<AuthService>(context);
 
   // sign user in method
-  void goHome(BuildContext context) async {
-    final username = usernameController.text;
-    final password = passwordController.text;
-
-    bool result = await authService.login(
-        username, password); // Llama a la función de login
-
-    if (result) {
-      Navigator.pushNamed(context, '/home');
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content:
-              Text('Inicio de sesión fallido. Por favor, inténtalo de nuevo.'),
-        ),
-      );
-    }
+  void goHome(BuildContext context) {
+    Navigator.pushNamed(context, '/home');
   }
 
   void signIn(BuildContext context) {
@@ -40,6 +23,7 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var authService = Provider.of<AuthService>(context);
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
@@ -47,11 +31,11 @@ class Login extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
 
               // logo
               Text(
-                'LogIn',
+                'Iniciar Sesion',
                 style: TextStyle(
                   color: const Color.fromARGB(255, 14, 22, 28),
                   fontWeight: FontWeight.bold,
@@ -59,11 +43,11 @@ class Login extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
 
               // welcome back, you've been missed!
               Text(
-                '¡Hola de nuevo!',
+                '¡Bienvenido!',
                 style: TextStyle(
                   color: Colors.grey[700],
                   fontSize: 16,
@@ -97,7 +81,7 @@ class Login extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      'Forgot Password?',
+                      'Olvidaste tu Contraseña?',
                       style: TextStyle(color: Colors.grey[600]),
                     ),
                   ],
@@ -106,12 +90,30 @@ class Login extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              // sign in button
-              MyButton(onTap: () {
-                goHome(context);
-              }),
+              // sign in butto
+              ElevatedButton(
+                onPressed: () async {
+                  final username = usernameController.text;
+                  final password = passwordController.text;
 
-              const SizedBox(height: 50),
+                  final loginOk = await authService.login(username, password);
+
+                  print(loginOk);
+
+                  if (loginOk) {
+                    Navigator.pushNamed(context, '/home');
+                  } else {
+                    print('El inicio de sesión ha fallado');
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue, // Color de fondo del botón
+                  onPrimary: Colors.white, // Color del texto del botón
+                ),
+                child: Text('Go Home'), // Puedes personalizar el texto aquí
+              ),
+
+              const SizedBox(height: 30),
 
               // or continue with
               Padding(
@@ -141,7 +143,7 @@ class Login extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 20),
 
               // google + apple sign in buttons
               Row(
@@ -152,7 +154,7 @@ class Login extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 15),
               InkWell(
                 onTap: () {
                   signIn(context);
@@ -166,13 +168,18 @@ class Login extends StatelessWidget {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(width: 4),
-                    const Text(
-                      'Register now',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+                    InkWell(
+                      onTap: () {
+                        signIn(context);
+                      },
+                      child: Text(
+                        'Register now',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               )

@@ -1,16 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart'; // Importa el paquete provider
 import 'package:myappflutter/pages/home.dart';
 import 'package:myappflutter/pages/login.dart';
 import 'package:myappflutter/pages/signin.dart';
+import 'package:myappflutter/services/auth_service.dart';
 
 void main() {
-  runApp(MaterialApp(
-    initialRoute: '/', // Esta es la ruta inicial
-    routes: {
-      '/': (context) => Login(), // Ruta para login.dart
-      '/home': (context) => Home(), // Ruta para home.dart
-      //Cuando esté bien hecha / será index que verá si esta logeado o no
-      '/signin': (context) => Signin(),
-    },
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+            create: (_) => AuthService()), // Define el Provider de AuthService
+      ],
+      child: MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Login(),
+        '/home': (context) => Home(),
+        '/signIn': (context) => Signin(),
+      },
+    );
+  }
 }

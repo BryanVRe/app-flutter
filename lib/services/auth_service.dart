@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+//import 'package:provider/provider.dart';
 
 class AuthService with ChangeNotifier {
-  final String urlApi = "http://localhost:8000/graphql/";
+  final String urlApi =
+      "https://graphql-btoarriola-btoarriola.cloud.okteto.net/graphql/";
   bool _auntenticando = false;
 
   bool get autenticando => _auntenticando;
