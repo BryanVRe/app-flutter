@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Login(),
         '/home': (context) => NavbarPage(),
-        '/signIn': (context) => Signin(),
+        '/signin': (context) => Signin(),
       },
     );
   }

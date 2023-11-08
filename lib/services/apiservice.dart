@@ -2,45 +2,40 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-class ApiService with ChangeNotifier{
-  final String baseUrl =
-      'https://biciclefastapi-service-btoarriola.cloud.okteto.net';
+class ApiService with ChangeNotifier {
+  final String baseUrl = 'https://machinefp-service-bryanvre.cloud.okteto.net';
 
-  Future<int> getRentedValue(
-      {required int date,
-      required int hour,
-      required double temperature,
-      required double humidity,
-      required double windSpeed,
-      required double visibility,
-      required double dewPoint,
-      required double solarRadiation,
-      required double rainfall,
-      required double snowfall,
-      required int season,
-      required int isHoliday,
-      required int isFunctioningDay}) async {
-    final Uri url = Uri.parse('$baseUrl/rented');
-    // ignore: avoid_print
-    print(url);
+  Future<int> getRentedValue({
+    required int Product,
+    required int Type,
+    required double AirTemperature,
+    required double ProcessTemperature,
+    required int Rotationa1speed,
+    required int Too1wear,
+    required int ac2inefai1ure,
+    required int TWF,
+    required int DF,
+    required int PWF,
+    required int OSF,
+    required int RNF,
+  }) async {
+    final Uri url = Uri.parse('$baseUrl/score');
 
-    // Construye el cuerpo de la solicitud, si es necesario
+    // Construye el cuerpo de la solicitud, ajustando los nombres de los campos
     final Map<String, dynamic> requestBody = {
-      'Date': date,
-      'Hour': hour,
-      'Temperature': temperature,
-      'Humidity': humidity,
-      'Wind_Speed': windSpeed,
-      'Visibility': visibility,
-      'Dew_Point': dewPoint,
-      'Solar_Radiation': solarRadiation,
-      'Rainfall': rainfall,
-      'Snowfall': snowfall,
-      'Season': season,
-      'IsHoliday': isHoliday,
-      'IsFunctioningDay': isFunctioningDay,
+      'Product': Product,
+      'Type': Type,
+      'Air Temperature': AirTemperature,
+      'Process Temperature': ProcessTemperature,
+      'Rotationa1speed': Rotationa1speed,
+      'Too1wear': Too1wear,
+      'ac2inefai1ure': ac2inefai1ure,
+      'TWF': TWF,
+      'DF': DF,
+      'PWF': PWF,
+      'OSF': OSF,
+      'RNF': RNF,
     };
-    print(jsonEncode(requestBody));
 
     final response = await http.post(
       url,
@@ -49,12 +44,10 @@ class ApiService with ChangeNotifier{
       },
       body: jsonEncode(requestBody),
     );
-    print(response.body);
 
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
-      // El valor entero que recibes se encuentra en responseData
-      return responseData['Bikes_Rented'];
+      return responseData['score'];
     } else {
       throw Exception('Error al consumir la API');
     }

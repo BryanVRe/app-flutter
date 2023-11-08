@@ -37,7 +37,6 @@ class Signin extends StatelessWidget {
   void logIn(BuildContext context) {
     Navigator.pushNamed(context, '/');
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Mi primer app flutter',
+        title: 'MACHINE FAILURE PREDICTIONS',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(

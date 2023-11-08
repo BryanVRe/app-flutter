@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class FitService with ChangeNotifier{
   final String baseUrl =
-      'https://api.github.com/repos/btoarriola/biciclefastapi/dispatches';
+      'https://api.github.com/repos/bryanvre/machinef/dispatches';
 
   Future<void> getFit({
   required int dataset,
@@ -15,13 +15,13 @@ class FitService with ChangeNotifier{
     String dataseturl="";
     switch (dataset){
       case 1:
-        dataseturl="https://firebasestorage.googleapis.com/v0/b/biciclefastapi.appspot.com/o/train.csv?alt=media&token=f2c515e8-e6bf-4dcd-9923-c80db4f229d4";
+        dataseturl="https://firebasestorage.googleapis.com/v0/b/machine-failure.appspot.com/o/machine-failure_100.csv?alt=media&token=864de8fe-29b8-4be4-820d-22e0548f4a99";
         break;
       case 2:
-        dataseturl="https://firebasestorage.googleapis.com/v0/b/biciclefastapi.appspot.com/o/train50.csv?alt=media&token=e6603e86-b417-454a-a6b0-3c0397771fd0";
+        dataseturl="https://firebasestorage.googleapis.com/v0/b/machine-failure.appspot.com/o/machine-failure_50.csv?alt=media&token=19168c13-c807-460b-b12e-c3bb109e4453";
         break;
       case 3:
-        dataseturl="https://firebasestorage.googleapis.com/v0/b/biciclefastapi.appspot.com/o/train25.csv?alt=media&token=7ba3d970-3999-4974-88be-2c814459dbd1";
+        dataseturl="https://firebasestorage.googleapis.com/v0/b/machine-failure.appspot.com/o/machine-failure_25.csv?alt=media&token=6762b9e3-27d3-4c03-994c-8191bad18d22";
         break;
     }
 
@@ -30,7 +30,7 @@ class FitService with ChangeNotifier{
       "event_type": "ml_ci_cd",
       "client_payload": {
         "dataseturl": dataseturl,
-        "sha": "bto"
+        "sha": "bryan"
       }
     };
     print(jsonEncode(requestBody));
@@ -38,7 +38,7 @@ class FitService with ChangeNotifier{
     final response = await http.post(
       url,
       headers: {
-        'Authorization': 'Bearer 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',
+        'Authorization': 'Bearer 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',
         'Accept': 'application/vnd.github.v3+json',
         'Content-type': 'application/json',
       },
