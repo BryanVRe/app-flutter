@@ -247,7 +247,7 @@ class _PredictState extends State<Predict> {
                       RNF = int.parse(RNFController.text);
                       Type = int.parse(typeController.text);
 
-                      int result = await apiService.getRentedValue(
+                      double result = await apiService.getRentedValue(
                         Product: Product,
                         Type: Type,
                         AirTemperature: AirTemperature,
@@ -262,6 +262,7 @@ class _PredictState extends State<Predict> {
                         RNF: RNF,
                       );
 
+                      // ignore: use_build_context_synchronously
                       showDialog(
                         context: context,
                         builder: (context) {
@@ -270,54 +271,7 @@ class _PredictState extends State<Predict> {
                             content: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                ListTile(
-                                  title: Text('Product'),
-                                  subtitle: Text('$Product'),
-                                ),
-                                ListTile(
-                                  title: Text('Air Temperature'),
-                                  subtitle: Text('$AirTemperature'),
-                                ),
-                                ListTile(
-                                  title: Text('Process Temperature'),
-                                  subtitle: Text('$ProcessTemperature'),
-                                ),
-                                ListTile(
-                                  title: Text('Rotation Speed'),
-                                  subtitle: Text('$Rotationa1speed'),
-                                ),
-                                ListTile(
-                                  title: Text('Too1wear'),
-                                  subtitle: Text('$Too1wear'),
-                                ),
-                                ListTile(
-                                  title: Text('Ac2inefai1ure'),
-                                  subtitle: Text('$ac2inefai1ure'),
-                                ),
-                                ListTile(
-                                  title: Text('TWF'),
-                                  subtitle: Text('$TWF'),
-                                ),
-                                ListTile(
-                                  title: Text('DF'),
-                                  subtitle: Text('$DF'),
-                                ),
-                                ListTile(
-                                  title: Text('PWF'),
-                                  subtitle: Text('$PWF'),
-                                ),
-                                ListTile(
-                                  title: Text('OSF'),
-                                  subtitle: Text('$OSF'),
-                                ),
-                                ListTile(
-                                  title: Text('RNF'),
-                                  subtitle: Text('$RNF'),
-                                ),
-                                ListTile(
-                                  title: Text('Type'),
-                                  subtitle: Text('$Type'),
-                                ),
+
                                 ListTile(
                                   title: const Text('Predicción'),
                                   subtitle: Text('$result'),

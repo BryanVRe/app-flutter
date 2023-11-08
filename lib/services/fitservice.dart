@@ -7,6 +7,7 @@ class FitService with ChangeNotifier{
       'https://api.github.com/repos/bryanvre/machinef/dispatches';
 
   Future<void> getFit({
+    required String sha,
   required int dataset,
   }) async {
     final Uri url = Uri.parse(baseUrl);
@@ -30,7 +31,7 @@ class FitService with ChangeNotifier{
       "event_type": "ml_ci_cd",
       "client_payload": {
         "dataseturl": dataseturl,
-        "sha": "bryan"
+        "sha": sha
       }
     };
     print(jsonEncode(requestBody));
@@ -38,7 +39,7 @@ class FitService with ChangeNotifier{
     final response = await http.post(
       url,
       headers: {
-        'Authorization': 'Bearer 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',
+        'Authorization': 'Bearer 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',
         'Accept': 'application/vnd.github.v3+json',
         'Content-type': 'application/json',
       },

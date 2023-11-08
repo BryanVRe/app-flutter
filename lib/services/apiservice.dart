@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class ApiService with ChangeNotifier {
   final String baseUrl = 'https://machinefp-service-bryanvre.cloud.okteto.net';
 
-  Future<int> getRentedValue({
+  Future<double> getRentedValue({
     required int Product,
     required int Type,
     required double AirTemperature,
@@ -47,7 +47,11 @@ class ApiService with ChangeNotifier {
 
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
-      return responseData['score'];
+      print(responseData['score']);
+      double valor=responseData['score'];
+      print("valor");
+      print(valor);
+      return valor; // Convert the response to a double
     } else {
       throw Exception('Error al consumir la API');
     }
